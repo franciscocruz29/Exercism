@@ -37,7 +37,17 @@ export function revokeTicket(visitor) {
  * @returns {string} ticket status
  */
 export function ticketStatus(tickets, ticketId) {
-  throw new Error('Please implement the ticketStatus function.');
+  if (tickets.hasOwnProperty(ticketId)) {
+    if (tickets[ticketId] === null) {
+      return 'not sold'
+    }
+    else {
+      return `sold to ${tickets[ticketId]}`
+    }
+  }
+  else {
+    return 'unknown ticket id'
+  }
 }
 
 /**
@@ -49,7 +59,7 @@ export function ticketStatus(tickets, ticketId) {
  * @returns {string} ticket status
  */
 export function simpleTicketStatus(tickets, ticketId) {
-  throw new Error('Please implement the simpleTicketStatus function.');
+  
 }
 
 /**
