@@ -37,9 +37,9 @@ Node 2: Node 1 <-- 10 --> Node 3
 Node 3: Node 2 <-- 15 --> null
  */
 
-// 2. Design the data structure and implementation:
+// 2. Design the data structure:
 
-class Node {
+/* class Node {
   constructor(value) {
     this.value = value;
     this.next = null;
@@ -144,4 +144,116 @@ export class LinkedList {
     return this.length;
   }
 }
+ */
 
+// 3. Refactor the code:
+
+class Node {
+  constructor(value) {
+    this.value = value;
+    this.next = null;
+    this.prev = null;
+  }
+}
+
+export class LinkedList {
+  #head = null;
+  #tail = null;
+  #length = 0;
+
+  get head() {
+    return this.#head?.value ?? null;
+  }
+
+  get tail() {
+    return this.#tail?.value ?? null;
+  }
+
+  get length() {
+    return this.#length;
+  }
+
+  push(value) {
+    const node = new Node(value);
+    if (this.#length === 0) {
+      this.#head = node;
+      this.#tail = node;
+    } else {
+      node.prev = this.#tail;
+      this.#tail.next = node;
+      this.#tail = node;
+    }
+    this.#length++;
+  }
+
+  pop() {
+    if (this.#length === 0) return null;
+    const node = this.#tail;
+    if (this.#length === 1) {
+      this.#head = null;
+      this.#tail = null;
+    } else {
+      this.#tail = node.prev;
+      this.#tail.next = null;
+      node.prev = null;
+    }
+    this.#length--;
+    return node.value;
+  }
+
+  shift() {
+    if (this.#length === 0) return null;
+    const node = this.#head;
+    if (this.#length === 1) {
+      this.#head = null;
+      this.#tail = null;
+    } else {
+      this.#head = node.next;
+      this.#head.prev = null;
+      node.next = null;
+    }
+    this.#length--;
+    return node.value;
+  }
+
+  unshift(value) {
+    const node = new Node(value);
+    if (this.#length === 0) {
+      this.#head = node;
+      this.#tail = node;
+    } else {
+      node.next = this.#head;
+      this.#head.prev = node;
+      this.#head = node;
+    }
+    this.#length++;
+  }
+
+  delete(value) {
+    let node = this.#head;
+    while (node) {
+      if (node.value === value) {
+        if (this.#length === 1) {
+          this.#head = null;
+          this.#tail = null;
+        } else if (node === this.#head) {
+          this.#head = node.next;
+          this.#head.prev = null;
+        } else if (node === this.#tail) {
+          this.#tail = node.prev;
+          this.#tail.next = null;
+        } else {
+          node.prev.next = node.next;
+          node.next.prev = node.prev;
+        }
+        this.#length--;
+        break;
+      }
+      node = node.next;
+    }
+  }
+
+  count() {
+    return this.#length;
+  }
+}
