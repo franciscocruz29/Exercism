@@ -89,19 +89,73 @@
 
 # 4. Implementation:
 
-def answer(question):
-    # Preprocess the input string
+# def answer(question):
+#     # Preprocess the input string
+#     question = question.replace("What is", "").replace("?", "").lower()
+#     question = question.replace("plus", "+").replace("minus", "-")
+#     question = question.replace("multiplied by", "*").replace("divided by", "/")
+#     question_list = question.split()
+
+#     # Check for syntax errors or unknown operations
+#     if not question_list:
+#         raise ValueError("syntax error")
+    
+#     try:
+#         last_element = question_list[-1]
+#         last_element = int(last_element)
+#     except ValueError:
+#         if last_element not in ['+', '-', '*', '/']:
+#             raise ValueError("unknown operation")
+#         else:
+#             raise ValueError("syntax error")  # Missing operand after operator
+
+#     try:
+#         int(question_list[0])
+#     except ValueError:
+#         raise ValueError("syntax error")
+
+#     # Perform the calculations
+#     result = int(question_list[0])
+#     operator = None  # Track the current operator
+#     for token in question_list[1:]:
+#         if token in ['+', '-', '*', '/']:
+#             if operator is not None:
+#                 raise ValueError("syntax error")  # Reject two operators in a row
+#             operator = token
+#         else:
+#             if operator is None:
+#                 raise ValueError("syntax error")  # Reject missing operator
+#             try:
+#                 operand = int(token)
+#                 if operator == "+":
+#                     result += operand
+#                 elif operator == "-":
+#                     result -= operand
+#                 elif operator == "*":
+#                     result *= operand
+#                 elif operator == "/":
+#                     result //= operand
+#                 operator = None  # Reset operator after using it
+#             except ValueError:
+#                 raise ValueError("syntax error")
+    
+#     return result
+
+# 5. Refactoring:
+
+def preprocess_input(question):
     question = question.replace("What is", "").replace("?", "").lower()
     question = question.replace("plus", "+").replace("minus", "-")
     question = question.replace("multiplied by", "*").replace("divided by", "/")
     question_list = question.split()
 
-    # Check for syntax errors or unknown operations
     if not question_list:
         raise ValueError("syntax error")
     
+    return question_list
+
+def validate_last_element(last_element):
     try:
-        last_element = question_list[-1]
         last_element = int(last_element)
     except ValueError:
         if last_element not in ['+', '-', '*', '/']:
@@ -109,14 +163,16 @@ def answer(question):
         else:
             raise ValueError("syntax error")  # Missing operand after operator
 
+def validate_first_element(first_element):
     try:
-        int(question_list[0])
+        int(first_element)
     except ValueError:
         raise ValueError("syntax error")
 
-    # Perform the calculations
+def perform_calculations(question_list):
     result = int(question_list[0])
-    operator = None  # Track the current operator
+    operator = None
+    
     for token in question_list[1:]:
         if token in ['+', '-', '*', '/']:
             if operator is not None:
@@ -139,4 +195,11 @@ def answer(question):
             except ValueError:
                 raise ValueError("syntax error")
     
+    return result
+
+def answer(question):
+    question_list = preprocess_input(question)
+    validate_last_element(question_list[-1])
+    validate_first_element(question_list[0])
+    result = perform_calculations(question_list)
     return result
