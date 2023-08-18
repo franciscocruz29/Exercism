@@ -85,59 +85,58 @@
     # If any error occurs during the calculation, raise a ValueError for syntax errors (Rule 4).
 
 # 4. Return the final result
-    # The function returns the final result r, which is the answer to the math word problem.
+    # The function returns the final result, which is the answer to the math word problem.
 
 # 4. Implementation:
 
 def answer(question):
-    question=question.replace("What is","")
-    question=question.replace("plus","+")
-    question=question.replace("minus","-")
-    question=question.replace("multiplied by","*")
-    question=question.replace("divided by","/")
-    question=question.replace("?","")
-    question=question.split()
-    
-    if question == []:
+    # Preprocess the input string
+    question = question.replace("What is", "").replace("?", "").lower()
+    question = question.replace("plus", "+").replace("minus", "-")
+    question = question.replace("multiplied by", "*").replace("divided by", "/")
+    question_list = question.split()
+
+    # Check for syntax errors or unknown operations
+    if not question_list:
         raise ValueError("syntax error")
+    
     try:
-        int(question[-1])
-    except:
-        if question[-1] not in ("+","-","/","*"):
+        last_element = question_list[-1]
+        last_element = int(last_element)
+    except ValueError:
+        if last_element not in ['+', '-', '*', '/']:
             raise ValueError("unknown operation")
-        if question == "":
-            raise ValueError("syntax error")
+        else:
+            raise ValueError("syntax error")  # Missing operand after operator
+
     try:
-        r = int(question[0])
-    except:
+        int(question_list[0])
+    except ValueError:
         raise ValueError("syntax error")
-    for i in range(0,len(question),1):
-        try:
-            if question[i].isdigit() and question[i+1].isdigit():
-            
-                raise ValueError("syntax error")
-        except IndexError:
-            continue
-        
-        if question[i] == "+":
+
+    # Perform the calculations
+    result = int(question_list[0])
+    operator = None  # Track the current operator
+    for token in question_list[1:]:
+        if token in ['+', '-', '*', '/']:
+            if operator is not None:
+                raise ValueError("syntax error")  # Reject two operators in a row
+            operator = token
+        else:
+            if operator is None:
+                raise ValueError("syntax error")  # Reject missing operator
             try:
-                r+=int(question[i+1])
-            except:
-                raise ValueError("syntax error")
-        if question[i] == "-":
-            try:
-                r -= int(question[i+1])
-            except:
-                raise ValueError("syntax error")
-        if question[i] == "*":
-            try:
-                r*= int(question[i+1])
-            except:
-                raise ValueError("syntax error")
-        if question[i] == "/":
-            try:
-                r/=int(question[i+1])
-            except:
+                operand = int(token)
+                if operator == "+":
+                    result += operand
+                elif operator == "-":
+                    result -= operand
+                elif operator == "*":
+                    result *= operand
+                elif operator == "/":
+                    result //= operand
+                operator = None  # Reset operator after using it
+            except ValueError:
                 raise ValueError("syntax error")
     
-    return(r)
+    return result
