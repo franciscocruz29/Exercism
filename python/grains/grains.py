@@ -23,15 +23,13 @@
 #    - Use 2^(number - 1) to calculate grains
 # 2. Create a function 'total' to calculate total grains on the chessboard:
 #    - Use the formula: 2^64 - 1 (sum of geometric series)
-# 3. Error handling is implemented in the 'square' function
-# 4. Main function is not explicitly implemented in this code
+# 3. Implement error handling for invalid inputs (square numbers out of range)
 
 # Step 4: Implementation
 def square(number):
     if number not in range(1, 65):
         raise ValueError("square must be between 1 and 64")
     return pow(2, number - 1)
-
 
 def total():
     return pow(2, 64) - 1
