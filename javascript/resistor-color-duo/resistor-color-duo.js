@@ -12,7 +12,7 @@
 // - The output is formed by concatenating the digits of the first and second color bands.
 //
 // What is the mental model?
-// - We are mapping colors to numbers to calculate a resistance value based on the first two bands of a resistor.
+// - The mental model is to map the first and second color names to their respective digits and then combine these digits to form a two-digit number representing the resistor's value.
 //
 //
 // Step 2. Examples:
