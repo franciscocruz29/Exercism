@@ -1,87 +1,85 @@
-# 1. Understand the problem:
+# Step 1 - Problem Understanding:
 
-# What are the input?: a positive integer
-# What are the output?: a string, the classification of the input integer, "perfect", "abundant", or "deficient"
+# What are the input?
+# A single positive integer, n.
 
-# What are the requirements?:
-#   The input integer must be positive
-#   Determine if a number is perfect, abundant, or deficient based on Nicomachus classification scheme for positive integers.
+# What is the output?
+# A string indicating whether the number n is "perfect," "abundant," or "deficient."
 
 # What are the rules?:
-#   The aliquot sum is defined as the sum of the factors of a number not including the number itself
-#   Perfect: The aliquot sum equals the number
-#   Abundant: The aliquot sum is greater than the number
-#   Deficient: The aliquot sum is less than the number
+# - Aliquot Sum: The sum of the proper divisors of n (i.e., divisors excluding n itself).
+# - Classifications:
+#       Perfect: If the aliquot sum equals n.
+#       Abundant: If the aliquot sum is greater than n.
+#       Deficient: If the aliquot sum is less than n.
+# - The input will always be a positive integer.
 
-# 2. Examples:
+# What is the mental model?
+# You can think of this as a process where for a given number n, you gather all its divisors
+# (excluding n itself), sum them up, and then compare the sum to n.
+# Based on this comparison, the number is classified into one of the three categories.
 
-# 6 is a perfect number because (1 + 2 + 3) = 6
-# 24 is an abundant number because (1 + 2 + 3 + 4 + 6 + 8 + 12) = 36
-# 8 is a deficient number because (1 + 2 + 4) = 7 // Prime numbers are deficient
+# Step 2 - Examples and Test Cases:
 
-# 3. Algorithm:
+# Example 1:
+# Input: 6
+#   Factors: 1, 2, 3
+#   Aliquot sum: 1 + 2 + 3 = 6
+# Output: Perfect
 
-#   1. Determine if the number is positive
-#   2. Determine the aliquot sum
-#    2.1 Find the factors of a positive integer excluding the number itself
-#    2.2 Find the sum of the factors
-#   3. Determine the classification of the number
+# Example 2:
+# Input: 12
+#   Factors: 1, 2, 3, 4, 6
+#   Aliquot sum: 1 + 2 + 3 + 4 + 6 = 16
+# Output: Abundant
 
-# 4. Implementation:
+# Example 3:
+# Input: 8
+#   Factors: 1, 2, 4
+#   Aliquot sum: 1 + 2 + 4 = 7
+# Output: Deficient
 
-# def get_factors(n):
-#     return [i for i in range(1, n) if n % i == 0]
+# Step 3 - Algorithm Design:
 
-# def aliquot_sum(n):
-#     return sum(get_factors(n))
+# 1. Accept the input number
+# 2. Find all factors of the number (excluding the number itself):
+#   - Iterate from 1 to the square root of the number
+#   - If the number is divisible by the current iterator, add both the iterator and the result of the division to the factors list (unless they're the same)
+# 3. Calculate the aliquot sum by summing all the factors
+# 4. Compare the aliquot sum to the original number:
+#   - If equal, classify as "perfect"
+#   - If greater, classify as "abundant"
+#   - If less, classify as "deficient"
+# 5. Return the classification
 
-# def classify(number):
-#     """ A perfect number equals the sum of its positive divisors.
-
-#     :param number: int a positive integer
-#     :return: str the classification of the input integer
-#     """
-#     if number <= 0:
-#         raise ValueError("Classification is only possible for positive integers.")
-
-#     aliquot = aliquot_sum(number)
-#     if aliquot == number:
-#         return "perfect"
-#     elif aliquot > number:
-#         return "abundant"
-#     else:
-#         return "deficient"
-
-# 5. Refactoring:
+# Step 4 - Implementation:
 
 import math
+from typing import List, Union
 
-""" The current implementation of the get_factors function is not very efficient because it checks every number up to n to see if it is a factor. 
-We can improve this by only checking up to the square root of n, because any factor larger than the square root of n would have a corresponding factor smaller than the square root.
+def find_factors(n: int) -> List[int]:
+    factors: List[int] = []
+    for i in range(1, int(math.sqrt(n)) + 1):
+        if n % i == 0:
+            factors.append(i)
+            if i != n // i:
+                factors.append(n // i)
+    factors.remove(n)  # Remove the number itself
+    return factors
 
-Also, we can calculate the aliquot sum directly in the classify function, without the need for the get_factors and aliquot_sum functions. 
-This will reduce the number of function calls and improve performance. """
+def calculate_aliquot_sum(factors: List[int]) -> int:
+    return sum(factors)
 
-def classify(number):
-    """ A perfect number equals the sum of its positive divisors.
+def classify(n: int) -> str:
+    if n <= 0:
+        raise ValueError( "Classification is only possible for positive integers.")
 
-    :param number: int a positive integer
-    :return: str the classification of the input integer
-    """
-    if number <= 0:
-        raise ValueError(
-            "Classification is only possible for positive integers.")
+    factors = find_factors(n)
+    aliquot_sum = calculate_aliquot_sum(factors)
 
-    aliquot = 1
-    for i in range(2, math.isqrt(number) + 1):
-        if number % i == 0:
-            aliquot += i
-            if i * i != number:
-                aliquot += number // i
-
-    if aliquot == number and number != 1:
+    if aliquot_sum == n:
         return "perfect"
-    elif aliquot > number:
+    elif aliquot_sum > n:
         return "abundant"
     else:
         return "deficient"
