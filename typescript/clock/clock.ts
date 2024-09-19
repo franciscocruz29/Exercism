@@ -1,58 +1,81 @@
-/* 
-Constructor: The constructor takes in hours and minutes, converts them to total minutes, and then uses modulus to get the equivalent minute within a day. 
-If the total minutes is negative, it adds 24*60 to get the positive equivalent. It then calculates the actual hour and minute by dividing total minutes by 60.
+// Step 1 - Problem Understanding:
 
-toString: This method converts the hour and minute to string, ensuring they are always two digits long, and returns the time in the format 'HH:MM'.
+// Inputs: Hours and minutes (integers, can be positive or negative)
+// Outputs: String representation of time, Clock objects for addition/subtraction, boolean for equality comparison
 
-plus: This method adds the given minutes to the current time and creates a new Clock instance with the updated time. The constructor of the Clock class will handle the overflow or underflow of hours and minutes.
+// Explicit Requirements and Rules:
+// - The clock must handle time in a 24-hour format (00:00 to 23:59).
+// - Ability to add and subtract minutes
+// - Equal representation for the same time
+// - Handle time rollover (past midnight or before midnight)
+// - The clock must handle negative values for both hours and minutes, adjusting accordingly.
+// - No use of built-in Date class
 
-minus: This method subtracts the given minutes from the current time and creates a new Clock instance with the updated time.
+// Mental model:
+// A clock face that operates on a 24-hour cycle.
+// You can add or subtract minutes to adjust the time.
+// If you exceed 24 hours or drop below 0, the time wraps around.
+// You also need a way to check if two clocks show the same time, regardless of how the time was reached.
 
-equals: This method compares the hour and minute of the current Clock instance with another one. It returns true if they are the same, and false otherwise. */
+// Step 2 - Examples and Test Cases:
+
+// a) Basic time representation:
+// new Clock(8).toString() => "08:00"
+// new Clock(11, 9).toString() => "11:09"
+
+// b) Time rollover:
+// new Clock(25, 0).toString() => "01:00"
+// new Clock(0, 160).toString() => "02:40"
+
+// c) Negative time handling:
+// new Clock(-25, -160).toString() => "20:20"
+// new Clock(1, -4820).toString() => "16:40"
+
+// Step 3 - Algorithm Design:
+
+// 1. Normalize Time Input:
+//    - When the Clock is initialized with hours and minutes, ensure both values are within valid bounds.
+//    - The constructor takes in hours and minutes, converts them to total minutes, and then uses modulus to get the equivalent minute within a day. If the total minutes is negative, it adds 24*60 to get the positive equivalent. It then calculates the actual hour and minute by dividing total minutes by 60.
+// 2. String Representation:
+//    - Ensure that the toString method returns the time in "HH:MM" format, padding hours and minutes as necessary.
+// 3. Handle Addition and Subtraction:
+//    - Create a method to add minutes (plus) by converting hours and minutes into total minutes, adjusting for the addition, and then recalculating hours and minutes from the total.
+//    - Similarly, for subtraction (minus), convert the clock time into total minutes, subtract, and then adjust back to valid hour/minute values.
+// 4. Equality Check:
+//    - Define an equals method that compares two Clock instances by checking if their hours and minutes are the same after normalizing them.
+
+// Step 4 - Implementation:
 
 export class Clock {
   private hour: number;
   private minute: number;
 
   constructor(hour: number, minute: number = 0) {
-    // Convert the hours and minutes to total minutes
-    let totalMinutes = hour * 60 + minute;
-
-    // Use modulus to get the equivalent minute within a day (24*60 minutes)
-    // If the total minutes is negative, add 24*60 to get the positive equivalent
-    totalMinutes = totalMinutes % (24 * 60);
-    if (totalMinutes < 0) totalMinutes += 24 * 60;
-
-    // Calculate the actual hour and minute by dividing total minutes by 60
-    this.hour = Math.floor(totalMinutes / 60);
-    this.minute = totalMinutes % 60;
+    // Normalize the time during initialization
+    const totalMinutes = hour * 60 + minute;
+    this.hour = Math.floor((((totalMinutes / 60) % 24) + 24) % 24);
+    this.minute = ((totalMinutes % 60) + 60) % 60;
   }
 
+  // Method to return the time in "HH:MM" format
   public toString(): string {
-    // Convert the hour and minute to string
-    // Use padStart to ensure they are always two digits long
-    // Return the time in the format 'HH:MM'
-    let hourString = this.hour.toString().padStart(2, "0");
-    let minuteString = this.minute.toString().padStart(2, "0");
-    return `${hourString}:${minuteString}`;
+    const paddedHour = this.hour.toString().padStart(2, "0");
+    const paddedMinute = this.minute.toString().padStart(2, "0");
+    return `${paddedHour}:${paddedMinute}`;
   }
 
+  // Method to add minutes to the clock
   public plus(minutes: number): Clock {
-    // Add the given minutes to the current time
-    // Create a new Clock instance with the updated time
-    // The constructor of the Clock class will handle the overflow or underflow of hours and minutes.
     return new Clock(this.hour, this.minute + minutes);
   }
 
+  // Method to subtract minutes from the clock
   public minus(minutes: number): Clock {
-    // Subtract the given minutes from the current time
-    // Create a new Clock instance with the updated time
     return new Clock(this.hour, this.minute - minutes);
   }
 
+  // Method to compare if two clocks are equal
   public equals(other: Clock): boolean {
-    // Compare the hour and minute of the current Clock instance with the other
-    // Return true if they are the same, false otherwise
     return this.hour === other.hour && this.minute === other.minute;
   }
 }
