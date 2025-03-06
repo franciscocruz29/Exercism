@@ -26,10 +26,30 @@
 # We need to determine which of four possible relationships exists between two given lists.
 
 
-# Step 5 - Implementation
+# Step 2 - Examples:
 
-# Possible sublist categories.
-# Change the values as you see fit.
+# Input: A = [], B = []
+# Output: EQUAL
+
+# Input: A = [1,2,3], B = []
+# Output: SUPERLIST
+
+# Input: A = [], B = [1,2,3]
+# Output: SUBLIST
+
+# Input: A = [1,2,3], B = [1,2,3,4,5]
+# Output: SUBLIST
+
+# Input: A = [1,2,3], B = [1,3,2]
+# Output: UNEQUAL
+
+# Input: A = [1,2,3,4,5], B = [2,3,4]
+# Output: SUPERLIST
+
+
+# Step 3 - Algorithm Design:
+# Step 4 - Implementation:
+
 SUBLIST = None
 SUPERLIST = None
 EQUAL = None
