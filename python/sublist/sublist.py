@@ -47,14 +47,28 @@
 # Output: SUPERLIST
 
 
-# Step 3 - Algorithm Design:
-# Step 4 - Implementation:
+# Step 3 - Strategies:
 
-SUBLIST = None
-SUPERLIST = None
-EQUAL = None
-UNEQUAL = None
+# Strategy 1: Direct comparasion
+# This approach examines the lists by directly checking for each relationship type in a specific order.
+# - Key aspects: Simple, straightforward logic that follows the problem definition directly.
+# Easy to understand but potentially performs redundant comparisons. Good for clarity but less efficient for large lists.
 
+# Strategy 2: Unified Function-Based Approach
+# This approach centralizes the logic by creating a single "is_sublist" function to determine
+# if one list appears contiguously within another, then uses this function to determine all possible relationships.
+# - Key aspects: Centralizes the core sublist detection logic in a reusable function.
+# Improves code maintainability and reduces duplication. Cleaner logical structure but requires careful implementation of the central function.
 
-def sublist(list_one, list_two):
-    pass
+# Strategy 3: Pattern Matching and Sliding Window
+# This approach views the problem as a pattern matching challenge, using a sliding window technique to find one list within another.
+# - Key aspects: Most efficient for large inputs, but more complex to implement.
+
+# Step 4 - Algorithm Design:
+
+# Step 5 - Implementation:
+
+SUBLIST = "sublist"
+SUPERLIST = "superlist"
+EQUAL = "equal"
+UNEQUAL = "unequal"
