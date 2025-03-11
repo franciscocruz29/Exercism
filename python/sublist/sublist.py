@@ -64,7 +64,36 @@
 # This approach views the problem as a pattern matching challenge, using a sliding window technique to find one list within another.
 # - Key aspects: Most efficient for large inputs, but more complex to implement.
 
+
 # Step 4 - Algorithm Design:
+
+# Initial Special Cases:
+#   1. If both list_one and list_two are empty:
+#       - Return EQUAL
+
+#   2. Handle Other Empty List Cases:
+#       - If list_one is empty: Return SUBLIST
+#       - If list_two is empty: Return SUPERLIST
+
+# Main Classification Logic:
+#   3. Check for Equality:
+#       - If list_one and list_two have the same length AND contain identical elements in the same order:
+#       - Return EQUAL
+
+#   4. Check for Sublist/Superlist Relationships:
+#       - If length(list_one) < length(list_two):
+#           - For each possible starting position i in list_two:
+#               - If list_one matches list_two[i:i+length(list_one)]:
+#                   - Return SUBLIST
+
+#       - If length(list_one) > length(list_two):
+#           - For each possible starting position i in list_one:
+#               - If list_two matches list_one[i:i+length(list_two)]:
+#                   - Return SUPERLIST
+
+#   5. Default Case:
+#       - Return UNEQUAL
+
 
 # Step 5 - Implementation:
 
