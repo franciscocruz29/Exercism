@@ -97,7 +97,55 @@
 
 # Step 5 - Implementation:
 
-SUBLIST = "sublist"
-SUPERLIST = "superlist"
-EQUAL = "equal"
-UNEQUAL = "unequal"
+SUBLIST = "SUBLIST"
+SUPERLIST = "SUPERLIST"
+EQUAL = "EQUAL"
+UNEQUAL = "UNEQUAL"
+
+
+def sublist(list_one, list_two):
+    """
+    Determine if list_one is a sublist, superlist, equal to, or unequal to list_two.
+
+    Returns one of the constants: SUBLIST, SUPERLIST, EQUAL, or UNEQUAL
+    """
+    # Initial Special Cases - Handle empty lists
+    if not list_one and not list_two:
+        return EQUAL
+    if not list_one:
+        return SUBLIST
+    if not list_two:
+        return SUPERLIST
+
+    # Check for Equality
+    if list_one == list_two:
+        return EQUAL
+
+    # Check for Sublist relationship (list_one is in list_two)
+    if len(list_one) < len(list_two):
+        if is_contained_in(list_one, list_two):
+            return SUBLIST
+
+    # Check for Superlist relationship (list_two is in list_one)
+    if len(list_one) > len(list_two):
+        if is_contained_in(list_two, list_one):
+            return SUPERLIST
+
+    # Default case - none of the above relationships hold
+    return UNEQUAL
+
+
+def is_contained_in(small, large):
+    """
+    Check if small list is contained as a contiguous subsequence in large list.
+    """
+    small_len = len(small)
+    large_len = len(large)
+
+    # Slide the window through large list
+    for i in range(large_len - small_len + 1):
+        # Check if the current window in large matches small
+        if large[i:i+small_len] == small:
+            return True
+
+    return False
