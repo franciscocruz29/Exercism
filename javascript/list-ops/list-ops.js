@@ -9,7 +9,6 @@
 // foldr -> given a function, a list, and an initial accumulator, fold(reduce) each item into the accumulator from the right using function (item, accumulator)
 // reverse -> given a list, return a list with all the original items, but in reversed order
 
-
 export class List {
   constructor(elements = []) {
     this.values = elements;
@@ -22,7 +21,6 @@ export class List {
     // Step 2: Return a new List that uses the combined array.
     return new List(combinedValues);
   }
-
 
   concat(listOfLists) {
     // Step 1: Start with a new List that contains the same elements as the current List.
@@ -50,7 +48,7 @@ export class List {
 
     // Step 2: Iterate over each value in the original list.
     for (let i = 0; i < this.values.length; i++) {
-      // Step 3: Apply the predicate to the current value. 
+      // Step 3: Apply the predicate to the current value.
       // If the predicate returns true, add the current value to the new list.
       if (predicate(this.values[i])) {
         filteredListValues = [...filteredListValues, this.values[i]];
