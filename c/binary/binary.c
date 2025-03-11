@@ -7,8 +7,10 @@
 // - An integer representing the decimal value of the binary number.
 
 // What are the rules?
-// - Do not use built-in functions or libraries that directly perform binary to decimal conversion
-// - The input is always a string. The function should return a specific value or error message for invalid input.
+// - Do not use built-in functions or libraries that directly perform binary to
+// decimal conversion
+// - The input is always a string. The function should return a specific value
+// or error message for invalid input.
 
 // What is the mental model?
 // - Given a binary input string, the function should produce a decimal output
@@ -19,8 +21,8 @@
 // Input: "0"
 // Output: 0
 
-// Input: "101" => 1*2^2 + 0*2^1 + 1*2^0 => 1*4 + 0*2 + 1*1 => 4 + 1 => 5 base 10
-// Output: 5
+// Input: "101" => 1*2^2 + 0*2^1 + 1*2^0 => 1*4 + 0*2 + 1*1 => 4 + 1 => 5 base
+// 10 Output: 5
 
 // Input: "10001101000"
 // Output: 1128
@@ -34,10 +36,12 @@
 // Step 3: What are the steps for converting the input to output?
 
 // 1. Initialize variables:
-//    * Start with a variable called decimal_value and set it to 0. This will hold the decimal value of the binary number.
+//    * Start with a variable called decimal_value and set it to 0. This will
+//    hold the decimal value of the binary number.
 //    * Set a variable position to 0 to track the power of 2.
 // 2. Iterate through the binary string:
-//    * Start from the rightmost character of the binary string and move leftward (reverse the string for easier traversal).
+//    * Start from the rightmost character of the binary string and move
+//    leftward (reverse the string for easier traversal).
 //    * For each character:
 //      - Check if it`s a valid binary digit('0' or '1'):
 //        - If not, return -1 to indicate invalid input
@@ -49,16 +53,13 @@
 
 // Step 4: Implementation
 #include "binary.h"
-#include <string.h>
 #include <ctype.h>
+#include <string.h>
 
 // Helper function to check if the input is a valid binary string
-static int is_valid_binary(const char *binary)
-{
-  for (int i = 0; binary[i] != '\0'; i++)
-  {
-    if (binary[i] != '0' && binary[i] != '1')
-    {
+static int is_valid_binary(const char *binary) {
+  for (int i = 0; binary[i] != '\0'; i++) {
+    if (binary[i] != '0' && binary[i] != '1') {
       return 0; // Invalid binary string
     }
   }
@@ -66,10 +67,8 @@ static int is_valid_binary(const char *binary)
 }
 
 // Function to convert binary string to decimal
-int convert(const char *binary)
-{
-  if (!is_valid_binary(binary))
-  {
+int convert(const char *binary) {
+  if (!is_valid_binary(binary)) {
     return INVALID;
   }
 
@@ -77,10 +76,8 @@ int convert(const char *binary)
   int position = 0;
   int length = strlen(binary);
 
-  for (int i = length - 1; i >= 0; i--)
-  {
-    if (binary[i] == '1')
-    {
+  for (int i = length - 1; i >= 0; i--) {
+    if (binary[i] == '1') {
       decimal_value += 1 << position; // Equivalent to 1 * 2^position
     }
     position++;
