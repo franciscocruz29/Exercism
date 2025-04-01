@@ -80,6 +80,14 @@
 
 // Step 5 - Implementation:
 
-export const transform = () => {
-  throw new Error("Error");
+export const transform = (legacyScores) => {
+  let letterScores = {};
+
+  for (const [score, letters] of Object.entries(legacyScores)) {
+    for (const letter of letters) {
+      letterScores[letter.toLowerCase()] = Number(score);
+    }
+  }
+
+  return letterScores;
 };
