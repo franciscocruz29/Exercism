@@ -17,7 +17,6 @@
 // * What is the mental model?
 //    * A reorganization of data that maintains the same information but in a format better suited for the game's expanded language support.
 
-
 // Step 2 - Examples:
 
 // Input: { 1: ["A"] }
@@ -61,10 +60,23 @@
 //    z: 10,
 //  };
 
-
 // Step 3 - Strategies:
 
-// Step 4 - Algorithm design:
+// 1. Direct iteration approach
+// This involves directly iterating through the original data structure, processing each key-value pair, and building the new data structure.
+
+// 2. Functional programming approach
+// Using higher-order functions like reduce, map, and flatMap to transform the data structure in a more declarative way.
+
+// Step 4 - Algorithm design for the Direct iteration approach:
+
+// 1. Initialze an empty object called letterScores to store our results
+// 2. For each key-value pair in the input object:
+//    a. Extract the score (key) and the array of letters (value)
+//    b. For each letter in the array:
+//       i. Convert the letter to lowercase
+//       ii. Add a new entry to letterScores with the lowercase letter as the key and the scores as the values
+// 3. Return the letterScores object
 
 // Step 5 - Implementation:
 
