@@ -37,7 +37,15 @@
 //   - strand_b: 'AAA'
 // Output: Error('strands must be of equal length'),
 //
-// Step 5 - Implementation
+// Step 3 - Algorithm design
+// 1. Check that the strands are the same length, if not throw an Error
+// 2. Initialize a counter for differences
+// 3. Loop through each position in both strands simultaneously
+//    3.1 Compare characters at current position
+//    3.2 Increment counter when characters differ
+// 4. Return the total number of differences
+//
+// Step 4 - Implementation
 //
 export const compute = (strand_a, strand_b) => {
   throw new Error("Remove this statement and implement this function");
