@@ -15,6 +15,28 @@
 // * What is the mental model?
 //    - Compare each character in the two strands and count the number of mismatches
 //
+// Step 2 - Examples
+//
+// Input:
+//   - strand_a: ''
+//   - strand_b: ''
+// Output: 0
+//
+// Input:
+//   - strand_a: 'G'
+//   - strand_b: 'C'
+// Output: 1
+//
+// Input:
+//   - strand_a: 'GGACGGATTCTG'
+//   - strand_b: 'AGGACGGATTCT'
+// Output: 9
+//
+// Input:
+//   - strand_a: 'AATG'
+//   - strand_b: 'AAA'
+// Output: Error('strands must be of equal length'),
+//
 // Step 5 - Implementation
 //
 export const compute = (strand_a, strand_b) => {
