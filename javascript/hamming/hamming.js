@@ -38,6 +38,7 @@
 // Output: Error('strands must be of equal length'),
 //
 // Step 3 - Algorithm design
+//
 // 1. Check that the strands are the same length, if not throw an Error
 // 2. Initialize a counter for differences
 // 3. Loop through each position in both strands simultaneously
@@ -48,5 +49,16 @@
 // Step 4 - Implementation
 //
 export const compute = (strand_a, strand_b) => {
-  throw new Error("Remove this statement and implement this function");
+  if (strand_a.length !== strand_b.length) {
+    throw Error("strands must be of equal length");
+  }
+
+  let differences = 0;
+
+  for (let i = 0; i < strand_a.length; i++) {
+    if (strand_a[i] !== strand_b[i]) {
+      differences += 1;
+    }
+  }
+  return differences;
 };
