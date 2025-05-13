@@ -34,6 +34,36 @@
 #   * Apply the Atbash substitution to decode letters.
 #   * Leave digits as they are.
 
+
+# Step 2 - Examples
+#
+# Encode:
+#
+# Input: "test"
+# Output: "gvhg"
+#
+# Input: "mindblowingly"
+# Output: "nrmwy oldrm tob"
+#
+# Input: "Testing,1 2 3, testing."
+# Output: "gvhgr mt123 gvhgr mt"
+#
+# Decode:
+#
+# Input: "vcvix rhn"
+# Output: "exercism"
+#
+# Input: "gvhgr mt123 gvhgr mt"
+# Output: "testing123testing"
+#
+# Input: "gsvjf rxpyi ldmul cqfnk hlevi gsvoz abwlt"
+# Output: "thequickbrownfoxjumpsoverthelazydog"
+
+
+# Step 3 - Algorithm design
+
+# Step 4 - Implementation
+#
 def encode(plain_text):
     pass
 
