@@ -62,6 +62,35 @@
 
 # Step 3 - Algorithm design
 
+# Encoding Algorithm:
+#
+# 1. Start with an empty result.
+# 2. Go through each character in the input:
+#   - If it's a letter:
+#       - Convert it to lowercase.
+#       - Replace it with the corresponding letter from the reversed alphabet (e.g., a → z, b → y, c → x, etc.).
+#       - Add the ciphered letter to the result.
+#   - If it's a number (0–9):
+#       - Leave it as it is and add it to the result.
+#   - If it's anything else (like punctuation or spaces):
+#       - Ignore it. Don't include it in the result.
+# 3. Once all characters have been processed, take the resulting string and split it into groups of five characters.
+#   - If the final group has fewer than five characters, that’s okay—just leave it as-is.
+# 4. Join the groups together using spaces, and that’s your final encoded message.
+#
+# Decoding Algorithm:
+#
+# 1. Start by removing all spaces from the input string.
+# 2. Go through each character in the cleaned-up string:
+#   - If it's a letter:
+#       - Replace it with the corresponding letter from the reversed alphabet (same rule: a ↔ z, b ↔ y, etc.).
+#       - Add the decoded letter to the result.
+#   - If it's a number:
+#       - Leave it unchanged and add it to the result.
+#   - Ignore any other characters, though there shouldn’t be any if the input is valid.
+# 3. Return the result as a single, lowercase string with no spaces.
+
+
 # Step 4 - Implementation
 #
 def encode(plain_text):
