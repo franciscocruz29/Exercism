@@ -92,10 +92,83 @@
 
 
 # Step 4 - Implementation
-#
+
+import string
+from textwrap import wrap
+
+# Create the Atbash cipher mapping (a ↔ z, b ↔ y, c ↔ x, etc.)
+ATBASH_MAP = str.maketrans(
+    string.ascii_lowercase,
+    string.ascii_lowercase[::-1]  # Reverse the alphabet
+)
+
+
+def remove_punctuation_and_spaces(text):
+    """
+    Keep only letters and numbers, convert to lowercase.
+    Example: "Hello, World! 123" → "helloworld123"
+    """
+    return ''.join(char.lower() for char in text if char.isalnum())
+
+
+def group_into_chunks(text, chunk_size=5):
+    """
+    Split text into groups of 5 characters separated by spaces.
+    Example: "helloworld" → "hello world"
+    """
+    return ' '.join(wrap(text, chunk_size))
+
+
 def encode(plain_text):
-    pass
+    """
+    Encode text using the Atbash cipher.
+
+    Steps:
+    1. Remove punctuation and convert to lowercase
+    2. Apply Atbash substitution to letters (digits stay the same)
+    3. Group result into chunks of 5 characters
+
+    Example: "Hello World!" → "svool dliow"
+    """
+    # Step 1: Clean the input
+    cleaned_text = remove_punctuation_and_spaces(plain_text)
+
+    # Step 2: Apply Atbash cipher
+    encoded_characters = []
+    for character in cleaned_text:
+        if character.isalpha():
+            # Apply Atbash substitution to letters
+            encoded_characters.append(character.translate(ATBASH_MAP))
+        else:
+            # Keep digits unchanged
+            encoded_characters.append(character)
+
+    # Step 3: Join and group into chunks
+    encoded_text = ''.join(encoded_characters)
+    return group_into_chunks(encoded_text)
 
 
-def decode(ciphered_text):
-    pass
+def decode(encoded_text):
+    """
+    Decode an Atbash-encoded string.
+
+    Steps:
+    1. Remove all spaces
+    2. Apply Atbash substitution to letters (digits stay the same)
+
+    Example: "svool dliow" → "helloworld"
+    """
+    # Step 1: Remove spaces
+    text_without_spaces = encoded_text.replace(' ', '')
+
+    # Step 2: Apply Atbash cipher (same operation as encoding)
+    decoded_characters = []
+    for character in text_without_spaces:
+        if character.isalpha():
+            # Apply Atbash substitution to letters
+            decoded_characters.append(character.translate(ATBASH_MAP))
+        else:
+            # Keep digits unchanged
+            decoded_characters.append(character)
+
+    return ''.join(decoded_characters)
