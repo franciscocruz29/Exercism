@@ -21,7 +21,10 @@ export function getListOfWagons(...ids) {
  * @returns {number[]} reordered list of wagons
  */
 export function fixListOfWagons(ids) {
-  throw new Error("Remove this line and implement the function");
+  const array = Array.from(ids);
+  const firstTwo = array.splice(0, 2);
+  array.push(...firstTwo);
+  return array;
 }
 
 /**
