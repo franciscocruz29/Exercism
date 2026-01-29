@@ -32,7 +32,11 @@ export function fixListOfWagons(ids) {
  * @param {Iterable<number>} missingWagons
  * @returns {number[]} corrected list of wagons
  */
-export function correctListOfWagons(ids, missingWagons) {}
+export function correctListOfWagons(ids, missingWagons) {
+  const array = Array.from(ids);
+  const missingArray = Array.from(missingWagons);
+  return [array[0], ...missingArray, ...array.slice(1)];
+}
 
 /**
  * Extend route information by adding another object
