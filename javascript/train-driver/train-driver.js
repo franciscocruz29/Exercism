@@ -22,9 +22,7 @@ export function getListOfWagons(...ids) {
  */
 export function fixListOfWagons(ids) {
   const array = Array.from(ids);
-  const firstTwo = array.splice(0, 2);
-  array.push(...firstTwo);
-  return array;
+  return [...array.slice(2), ...array.slice(0, 2)];
 }
 
 /**
@@ -34,9 +32,7 @@ export function fixListOfWagons(ids) {
  * @param {Iterable<number>} missingWagons
  * @returns {number[]} corrected list of wagons
  */
-export function correctListOfWagons(ids, missingWagons) {
-  throw new Error("Remove this line and implement the function");
-}
+export function correctListOfWagons(ids, missingWagons) {}
 
 /**
  * Extend route information by adding another object
