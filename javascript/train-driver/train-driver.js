@@ -56,5 +56,6 @@ export function extendRouteInformation(information, additional) {
  * @returns {[string, Record<string, string>]} array with arrival time and object without arrival time
  */
 export function separateTimeOfArrival(information) {
-  throw new Error("Remove this line and implement the function");
+  const { timeOfArrival, ...rest } = information;
+  return [timeOfArrival, rest];
 }
