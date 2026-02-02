@@ -46,7 +46,7 @@ export function correctListOfWagons(ids, missingWagons) {
  * @returns {Record<string, string>} extended route information
  */
 export function extendRouteInformation(information, additional) {
-  throw new Error("Remove this line and implement the function");
+  return { ...information, ...additional };
 }
 
 /**
