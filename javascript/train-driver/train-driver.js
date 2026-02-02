@@ -21,8 +21,8 @@ export function getListOfWagons(...ids) {
  * @returns {number[]} reordered list of wagons
  */
 export function fixListOfWagons(ids) {
-  const array = Array.from(ids);
-  return [...array.slice(2), ...array.slice(0, 2)];
+  const [first, second, ...rest] = ids;
+  return [...rest, first, second];
 }
 
 /**
