@@ -33,9 +33,8 @@ export function fixListOfWagons(ids) {
  * @returns {number[]} corrected list of wagons
  */
 export function correctListOfWagons(ids, missingWagons) {
-  const array = Array.from(ids);
-  const missingArray = Array.from(missingWagons);
-  return [array[0], ...missingArray, ...array.slice(1)];
+  const [first, ...rest] = ids;
+  return [first, ...missingWagons, ...rest];
 }
 
 /**
