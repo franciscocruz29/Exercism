@@ -1,5 +1,5 @@
 // Step 1 - Problem Understanding:
-
+//
 // * What are the expected inputs? (Data type, Description)
 //   - Input: A string representing a DNA sequence. Could be empty or non-empty.
 //   - Valid characters are the nucleotides 'A', 'C', 'G', and 'T' (case-insensitive; lowercase letters should be treated as their uppercase equivalents).
@@ -31,28 +31,50 @@
 // - Finally, format the four counts into a single string separated by spaces.
 
 // Step 2 - Examples / Test Cases:
-
-// * Come up with examples that cover typical cases.
-// * Provide test cases that handle edge cases (e.g., zero, empty collection, boundary values, etc.).
+//
+// Assumptions:
+//  - The input is always uppercase
+//  - When the input contains invalid characters, throw an error with the message "Invalid nucleotide in strand"
+//
+// Input: ""
+// Output: "0 0 0 0"
+//
+// Input: "G"
+// Output: "0 0 1 0"
+//
+// Input: "ACGT"
+// Output: "1 1 1 1"
+//
+// Input: "GGGGGGG"
+// Output: "0 0 7 0"
+//
+// Input: "GATTACA"
+// Output: "3 1 1 2"
+//
+// Input: "AGXXACT"
+// Output: new Error("Invalid nucleotide in strand")
+//
+// Input: "AC GT"
+// Output: new Error("Invalid nucleotide in strand")
 
 // Step 3 - Data Structure:
-
+//
 // * What data structures will be used and why?.Determine the appropriate data structure(s) to work with to convert the input to the output.
 // * Think about how your mental model maps to data structure choices.
 // * This choice is critical because it will influence the algorithm.
 
 // Step 4 - Algorithm Design:
-
+//
 // * Determine a series of precise instructions (pseudocode) that will transform the input to the desired output.
 // * Ensure the algorithm is detailed enough to be easily coded, but not written at the programming language level to maintain flexibility.
 // * Manually test the algorithm with your examples to ensure confidence.
 
 // Step 5 - Implementation:
-
+//
 // * Translate your algorithm into code in your chosen programming language.
 
 // Step 6 - Refactoring:
-
+//
 // * Review your working code for clarity, efficiency, and adherence to style guides.
 // * Make sure your code still handles edge cases and satisfies all test cases after refactoring.
 
