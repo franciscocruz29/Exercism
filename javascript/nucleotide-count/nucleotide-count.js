@@ -87,8 +87,7 @@ export function countNucleotides(strand) {
   let count_C = 0;
   let count_T = 0;
 
-  for (let i = 0; i < strand.length; i++) {
-    const nucleotide = strand[i];
+  for (const nucleotide of strand) {
     if (nucleotide === "A") {
       count_A++;
     } else if (nucleotide === "C") {
