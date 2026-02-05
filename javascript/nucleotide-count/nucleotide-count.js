@@ -2,7 +2,7 @@
 //
 // * What are the expected inputs? (Data type, Description)
 //   - Input: A string representing a DNA sequence. Could be empty or non-empty.
-//   - Valid characters are the nucleotides 'A', 'C', 'G', and 'T' (case-insensitive; lowercase letters should be treated as their uppercase equivalents).
+//   - Valid characters are the nucleotides 'A', 'C', 'G', and 'T'.
 //
 // * What are the expected outputs? (Data type, Description)
 //   - Output: A string containing 4 integer numbers separated by spaces in the order: A C G T
@@ -69,19 +69,24 @@
 
 // Step 4 - Algorithm Design:
 //
-// * Determine a series of precise instructions (pseudocode) that will transform the input to the desired output.
-// * Ensure the algorithm is detailed enough to be easily coded, but not written at the programming language level to maintain flexibility.
-// * Manually test the algorithm with your examples to ensure confidence.
+//  1. Initialize counters for A, C, G, T to 0.
+//  2. Iterate over each character in the uppercase string:
+//     a. If character is 'A': increment countA
+//     b. Else if character is 'C': increment countC
+//     c. Else if character is 'G': increment countG
+//     d. Else if character is 'T': increment countT
+//     e. Else: throw new Error("Invalid nucleotide in strand")
+//  3. Create a result string by joining the four counters with single spaces in the order: A, C, G, T.
+//  4. Return the result string.
 
 // Step 5 - Implementation:
 //
 // * Translate your algorithm into code in your chosen programming language.
+export function countNucleotides(strand) {
+  throw new Error("Remove this statement and implement this function");
+}
 
 // Step 6 - Refactoring:
 //
 // * Review your working code for clarity, efficiency, and adherence to style guides.
 // * Make sure your code still handles edge cases and satisfies all test cases after refactoring.
-
-export function countNucleotides(strand) {
-  throw new Error("Remove this statement and implement this function");
-}
