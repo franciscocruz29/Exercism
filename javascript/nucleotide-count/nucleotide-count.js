@@ -81,30 +81,58 @@
 
 // Step 5 - Implementation:
 //
-export function countNucleotides(strand) {
-  let count_A = 0;
-  let count_G = 0;
-  let count_C = 0;
-  let count_T = 0;
+// export function countNucleotides(strand) {
+//   let count_A = 0;
+//   let count_G = 0;
+//   let count_C = 0;
+//   let count_T = 0;
 
-  for (const nucleotide of strand) {
-    if (nucleotide === "A") {
-      count_A++;
-    } else if (nucleotide === "C") {
-      count_C++;
-    } else if (nucleotide === "G") {
-      count_G++;
-    } else if (nucleotide === "T") {
-      count_T++;
-    } else {
-      throw new Error("Invalid nucleotide in strand");
-    }
-  }
+//   for (const nucleotide of strand) {
+//     if (nucleotide === "A") {
+//       count_A++;
+//     } else if (nucleotide === "C") {
+//       count_C++;
+//     } else if (nucleotide === "G") {
+//       count_G++;
+//     } else if (nucleotide === "T") {
+//       count_T++;
+//     } else {
+//       throw new Error("Invalid nucleotide in strand");
+//     }
+//   }
 
-  return `${count_A} ${count_C} ${count_G} ${count_T}`;
-}
+//   return `${count_A} ${count_C} ${count_G} ${count_T}`;
+// }
 
 // Step 6 - Refactoring:
 //
-// * Review your working code for clarity, efficiency, and adherence to style guides.
-// * Make sure your code still handles edge cases and satisfies all test cases after refactoring.
+// Fixed list of valid nucleotides in the required output order.
+// The index of each nucleotide corresponds to its position in the counts array.
+const NUCLEOTIDES = ["A", "C", "G", "T"];
+
+// Counts how many times each nucleotide appears in the DNA strand.
+// Returns a string with counts in the order: A C G T.
+export const countNucleotides = ([...strand]) =>
+  strand
+    .reduce(
+      (counts, nucleotide) => {
+        // Validate that the current character is a valid nucleotide.
+        // If not, immediately stop execution by throwing an error.
+        if (!NUCLEOTIDES.includes(nucleotide)) {
+          throw new Error("Invalid nucleotide in strand");
+        }
+
+        // Find the index of the nucleotide in the NUCLEOTIDES array
+        // and increment the corresponding counter in the counts array.
+        ++counts[NUCLEOTIDES.indexOf(nucleotide)];
+
+        // Return the same counts array so it can be used in the next iteration.
+        return counts;
+      },
+      // Initial accumulator:
+      // An array of four zeros representing counts for A, C, G, and T.
+      [0, 0, 0, 0],
+    )
+    // Convert the final counts array into the required output format.
+    // Example: [3, 1, 1, 2] -> "3 1 1 2"
+    .join(" ");
