@@ -59,9 +59,13 @@
 
 // Step 3 - Data Structure:
 //
-// * What data structures will be used and why?.Determine the appropriate data structure(s) to work with to convert the input to the output.
-// * Think about how your mental model maps to data structure choices.
-// * This choice is critical because it will influence the algorithm.
+// Four integer counters will be used to track the number of occurrences
+// of each nucleotide (A, C, G, T).
+//
+// This choice is appropriate because:
+// - The set of nucleotides is fixed and known in advance.
+// - Each nucleotide needs a simple running total.
+// - This maps perfectly to my mental model: increment the right counter.
 
 // Step 4 - Algorithm Design:
 //
