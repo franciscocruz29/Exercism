@@ -1,4 +1,4 @@
-import { describe, expect, test, test } from "@jest/globals";
+import { describe, expect, test } from "@jest/globals";
 import { countNucleotides } from "./nucleotide-count";
 
 describe("count all nucleotides in a strand", () => {

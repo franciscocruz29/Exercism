@@ -81,9 +81,28 @@
 
 // Step 5 - Implementation:
 //
-// * Translate your algorithm into code in your chosen programming language.
 export function countNucleotides(strand) {
-  throw new Error("Remove this statement and implement this function");
+  let count_A = 0;
+  let count_G = 0;
+  let count_C = 0;
+  let count_T = 0;
+
+  for (let i = 0; i < strand.length; i++) {
+    const nucleotide = strand[i];
+    if (nucleotide === "A") {
+      count_A++;
+    } else if (nucleotide === "C") {
+      count_C++;
+    } else if (nucleotide === "G") {
+      count_G++;
+    } else if (nucleotide === "T") {
+      count_T++;
+    } else {
+      throw new Error("Invalid nucleotide in strand");
+    }
+  }
+
+  return `${count_A} ${count_C} ${count_G} ${count_T}`;
 }
 
 // Step 6 - Refactoring:
