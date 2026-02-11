@@ -55,9 +55,28 @@
 
 # Step 3 - Data Structure:
 #
-# * What data structures will be used and why?.Determine the appropriate data structure(s) to work with to convert the input to the output.
-# * Think about how your mental model maps to data structure choices.
-# * This choice is critical because it will influence the algorithm.
+# Input Data Types:
+#  - name: String (to be used directly in the output).
+#  - number: Integer (to be used for mathematical operations to determine the suffix).
+#
+# Intermediate Variables/Structures:
+#  - Integer Variables: I will use variables to store the results of modulo operations:
+#     - last_digit: number % 10 (to identify 1, 2, 3).
+#     - last_two_digits: number % 100 (to identify the 11, 12, 13 exceptions).
+#  - Dictionary (Optional but recommended): A dictionary mapping the remainders 1, 2, 3 to their respective suffixes "st", "nd", "rd". This replaces a long if/elif chain and makes the code more readable.
+#     Example: {1: "st", 2: "nd", 3: "rd"}.
+#
+# Output Data Type:
+#  - String: An f-string will be used to interpolate the name, number, and derived suffix into the final template.
+#
+# Mapping to Mental Model:
+#   Input (name, number) → Derive suffix using integer operations and
+#   conditionals → Format output string with f-string → Return result
+#
+#   Each data structure choice directly supports one step in this pipeline:
+#   - Integers + modulo = suffix derivation
+#   - String variables = clear intermediate state
+#   - F-string = output construction
 
 # Step 4 - Algorithm Design:
 #
