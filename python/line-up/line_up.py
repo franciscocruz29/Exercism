@@ -29,8 +29,29 @@
 
 # Step 2 - Examples / Test Cases:
 #
-# * Come up with examples that cover typical cases.
-# * Provide test cases that handle edge cases (e.g., zero, empty collection, boundary values, etc.).
+# Input: "Mary", 1
+# Output: "Mary, you are the 1st customer we serve today. Thank you!"
+#
+# Input: "Jacqueline", 11
+# Output: "Jacqueline, you are the 11th customer we serve today. Thank you!"
+#
+# Input: "Haruto", 2
+# Output: "Haruto, you are the 2nd customer we serve today. Thank you!"
+#
+# Input: "Juan", 12
+# Output: "Juan, you are the 12th customer we serve today. Thank you!"
+#
+# Input: "Henriette", 3
+# Output: "Henriette, you are the 3rd customer we serve today. Thank you!"
+#
+# Input: "Patricia", 13
+# Output: "Patricia, you are the 13th customer we serve today. Thank you!"
+#
+# Input: "Dahir", 162
+# Output: "Dahir, you are the 162nd customer we serve today. Thank you!"
+#
+# Input: "Mateo", 111
+# Output: "Mateo, you are the 111th customer we serve today. Thank you!"
 
 # Step 3 - Data Structure:
 #
