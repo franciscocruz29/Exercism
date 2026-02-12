@@ -80,9 +80,24 @@
 
 # Step 4 - Algorithm Design:
 #
-# * Determine a series of precise instructions (pseudocode) that will transform the input to the desired output.
-# * Ensure the algorithm is detailed enough to be easily coded, but not written at the programming language level to maintain flexibility.
-# * Manually test the algorithm with your examples to ensure confidence.
+# 1. Input: name(string), number(integer)
+# 2. Compute:
+#      last_digit = number % 10
+#      last_two_digits = number % 100
+# 3. Determine the suffix:
+#      IF last_two_digits is 11 OR 12 OR 13
+#           suffix = "th"
+#      ELSE IF last_digit is 1
+#           suffix = "st"
+#      ELSE IF last_digit is 2
+#           suffix = "nd"
+#      ELSE IF last_digit is 3
+#           suffix = "rd"
+#      ELSE
+#           suffix = "th"
+# 4. Construct the final message string using the exact template:
+#       "[name], you are the [number][suffix] customer we serve today. Thank you!"
+# 5. RETURN the final message
 
 # Step 5 - Implementation:
 #
