@@ -101,23 +101,28 @@
 
 # Step 5 - Implementation:
 #
-def line_up(name: str, number: int) -> str:
-    last_digit = number % 10
-    last_two_digits = number % 100
-    if last_two_digits in [11, 12, 13]:
-        suffix = "th"
-    elif last_digit == 1:
-        suffix = "st"
-    elif last_digit == 2:
-        suffix = "nd"
-    elif last_digit == 3:
-        suffix = "rd"
-    else:
-        suffix = "th"
-    return f"{name}, you are the {number}{suffix} customer we serve today. Thank you!"
+# def line_up(name: str, number: int) -> str:
+#     last_digit = number % 10
+#     last_two_digits = number % 100
+#     if last_two_digits in [11, 12, 13]:
+#         suffix = "th"
+#     elif last_digit == 1:
+#         suffix = "st"
+#     elif last_digit == 2:
+#         suffix = "nd"
+#     elif last_digit == 3:
+#         suffix = "rd"
+#     else:
+#         suffix = "th"
+#     return f"{name}, you are the {number}{suffix} customer we serve today. Thank you!"
 
 
 # Step 6 - Refactoring:
 #
-# * Review your working code for clarity, efficiency, and adherence to style guides.
-# * Make sure your code still handles edge cases and satisfies all test cases after refactoring.
+SUFFIX_MAP = {1: "st", 2: "nd", 3: "rd"}
+
+
+def line_up(name: str, number: int) -> str:
+    last_two, last_one = number % 100, number % 10
+    suffix = "th" if 11 <= last_two <= 13 else SUFFIX_MAP.get(last_one, "th")
+    return f"{name}, you are the {number}{suffix} customer we serve today. Thank you!"
