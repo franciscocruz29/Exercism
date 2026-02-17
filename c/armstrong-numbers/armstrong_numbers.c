@@ -25,5 +25,30 @@
 //     raise each digit to that count → sum the results →
 //     compare the sum to the original number → return true or false.
 
+// Step 2 - Examples/Test Cases
+//
+// Input: 0
+// Output: true
+// Reason: 0 = 0^1 = 0
+//
+// Input: 9
+// Output: true
+// Reason: 9 = 9^1 = 9
+//
+// Input: 153
+// Output: true
+// Reason: 153 = 1^3 + 5^3 + 3^3 = 1 + 125 + 27 = 153
+//
+// Input: 154
+// Output: false
+// Reason: 154 = 1^3 + 5^3 + 4^3 = 190
+//
+// Input: 9926315
+// Output: true
+// Reason: 9926315 = 9^7 + 9^7 + 2^7 + 6^7 + 3^7 + 1^7 + 5^7 = 9926315
+//
+// Input: -153
+// Output: false
+// Reason: Negative numbers are not Armstrong numbers.
 
 #include "armstrong_numbers.h"
