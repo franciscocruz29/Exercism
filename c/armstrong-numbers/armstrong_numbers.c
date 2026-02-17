@@ -51,4 +51,16 @@
 // Output: false
 // Reason: Negative numbers are not Armstrong numbers.
 
+// Step 3 - Data Structure
+//
+// I will keep everything as integers and use simple variables to hold intermediate values.
+// No complex data structures (arrays, hashes, strings) are needed.
+//
+// * Approach: Mathematical digit extraction (no arrays or strings)
+//   - The number remains an integer throughout processing.
+//   - Digits are handled individually using arithmetic.
+//   - Each digit contributes to an accumulated integer sum.
+//   - The final sum (integer) is compared to the original integer, producing a boolean result.
+
+
 #include "armstrong_numbers.h"
