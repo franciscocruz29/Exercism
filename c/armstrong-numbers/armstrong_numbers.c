@@ -62,5 +62,26 @@
 //   - Each digit contributes to an accumulated integer sum.
 //   - The final sum (integer) is compared to the original integer, producing a boolean result.
 
+// Step 4 - Algorithm Design:
+//
+// 1. If the input number is 0:
+//      - Return true
+// 2. Store the input number in originalNumber
+// 3. Count digits (FIRST LOOP):
+//      - Set copy to originalNumber
+//      - Initialize digitCount to 0
+//      - While copy > 0:
+//            - Increment digitCount by 1
+//            - Integer divide copy by 10
+// 4. Compute powered sum (SECOND LOOP):
+//      - Set copy to originalNumber
+//      - Initialize sum to 0
+//      - While copy > 0:
+//            - Extract digit = copy % 10
+//            - Compute poweredDigit = digit raised to digitCount
+//            - Add poweredDigit to sum
+//            - Integer divide copy by 10
+// 5. Return whether sum == originalNumber
+
 
 #include "armstrong_numbers.h"
