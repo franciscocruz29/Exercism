@@ -87,28 +87,32 @@
 //
 #include "armstrong_numbers.h"
 #include <stdbool.h>
+#include <math.h>
 
 bool is_armstrong_number(int candidate) {
     if (candidate == 0) {
         return true;
     }
-    int originalNumber = candidate;
-    int digitCount = 0;
-    int copy = originalNumber;
-    while (copy > 0) {
-        digitCount++;
-        copy /= 10;
+
+    int original_number = candidate;
+    int digit_count = 0;
+    int working = candidate;
+
+    // Count digits
+    while (working > 0) {
+        digit_count++;
+        working /= 10;
     }
-    copy = originalNumber;
+
+    working = original_number;
     int sum = 0;
-    while (copy > 0) {
-        int digit = copy % 10;
-        int poweredDigit = 1;
-        for (int i = 0; i < digitCount; i++) {
-            poweredDigit *= digit;
-        }
-        sum += poweredDigit;
-        copy /= 10;
+
+    // Compute powered sum
+    while (working > 0) {
+        int digit = working % 10;
+        sum += pow(digit, digit_count);
+        working /= 10;
     }
-    return sum == originalNumber;
+
+    return sum == original_number;
 }
