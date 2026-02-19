@@ -83,5 +83,32 @@
 //            - Integer divide copy by 10
 // 5. Return whether sum == originalNumber
 
-
+// Step 5: Implementation
+//
 #include "armstrong_numbers.h"
+#include <stdbool.h>
+
+bool is_armstrong_number(int candidate) {
+    if (candidate == 0) {
+        return true;
+    }
+    int originalNumber = candidate;
+    int digitCount = 0;
+    int copy = originalNumber;
+    while (copy > 0) {
+        digitCount++;
+        copy /= 10;
+    }
+    copy = originalNumber;
+    int sum = 0;
+    while (copy > 0) {
+        int digit = copy % 10;
+        int poweredDigit = 1;
+        for (int i = 0; i < digitCount; i++) {
+            poweredDigit *= digit;
+        }
+        sum += poweredDigit;
+        copy /= 10;
+    }
+    return sum == originalNumber;
+}
